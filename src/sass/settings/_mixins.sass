@@ -1,0 +1,47 @@
+@mixin flex-center
+    display: flex
+    align-items: center
+@mixin flex-center-center
+    display: flex
+    align-items: center
+    justify-content: center
+@mixin flex-between
+    display: flex
+    justify-content: space-between
+@mixin flex-between-center
+    display: flex
+    justify-content: space-between
+    align-items: center
+@mixin flex-column
+    display: flex
+    flex-direction: column
+@mixin flex-column-center
+    display: flex
+    flex-direction: column
+    align-items: center
+@mixin flex-column-reverse
+    display: flex
+    flex-direction: column-reverse
+@mixin flex-column-center-center
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+@mixin flex-column-between-center
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+@mixin flex-column-between
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+
+@mixin adaptiv-property($property, $maxSize, $minSize, $maxWidth, $minWidth: 320)
+    $addSize: $maxSize - $minSize
+    $maxW: $maxWidth - $minWidth
+    $w: $maxWidth
+    @media ( max-width: #{$w + px})
+        #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - #{$minWidth + px}) / #{$maxW})) 
+    @media ( min-width: #{$w + px} )
+        #{$property}: #{$maxSize + px}

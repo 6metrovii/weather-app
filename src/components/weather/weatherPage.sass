@@ -1,0 +1,602 @@
+@import "../../sass/settings/_mixins"
+@import "../../sass/settings/_vars"
+
+.weatherPage
+    .weatherPage-container
+        .weatherPage-link-back
+            @include flex-center
+            transition: all .3s ease
+            &::before
+                padding-right: 5px
+                transition: all .3s ease
+            &:hover
+                opacity: 1
+                &::before
+                    transform: translateX(-5px)
+        .weather-city-name
+            font-weight: 700
+            margin-bottom: 20px
+        .weatherPage-links
+            @include flex-center
+            .weatherPage-link
+                @include flex-column-reverse
+                align-items: center
+                row-gap: 2px
+                padding: 5px 0
+                font-weight: 500
+                padding-bottom: 3px
+                position: relative
+                z-index: 0 
+                &::after
+                    content:''
+                    position: absolute
+                    bottom: -3px
+                    left: -10%
+                    width: 0%
+                    height: 1px
+                    transition: all .3s ease
+                &:first-child
+                    &::before
+                        display: none
+                &:hover
+                    &::after
+                        width: 120%
+            .weatherPage-link.active
+                &::after
+                    width: 120%
+        .weather-info
+            .weatherPage-header
+                display: flex
+                column-gap: 5px
+                .weather-status
+                    font-weight: 700
+                    @include flex-center
+                    .wheather-icon
+                        padding-top: 10px
+                        img
+                            width: 100%
+                            height: 100%
+                            object-fit: contain
+            .weatherPage-body
+                @include flex-column
+
+.weatherPage-favorite
+    padding-top: 50px
+    .weatherPage-favorite-container
+        @include flex-column
+        row-gap: 20px
+        .weatherPage-favorite-title
+            font-size: 22px
+            margin-bottom: 10px
+
+.weather-city
+    max-width: 100%
+    padding: 30px 20px
+    display: flex
+    align-items: center
+    justify-content: space-between
+    transition: all .3s ease
+    .weather-header
+        flex: 0 0 33.33%
+        display: flex
+        align-items: center
+        .weather-main
+            display: flex
+            column-gap: 30px
+            .weather-city-name
+                position: relative
+                @include flex-center
+                flex-direction: row-reverse
+                text-transform: uppercase
+                font-weight: 600
+                &::before
+                    margin-bottom: 3px
+                    transform: rotate(180deg)  translateX(15px)
+                    opacity: 0
+                    transition: all 0.3s ease 0.2s
+                &::after
+                    content: ''
+                    position: absolute
+                    bottom: -4px
+                    left: 0
+                    width: 0%
+                    height: 2px
+                    transition: all 0.3s ease 
+                &:hover
+                    &::before
+                        opacity: 1
+                        transform: rotate(180deg)  translateX(-10px)
+                    &::after
+                        width: 100%
+            .weather-status
+                font-size: 14px
+        .wheather-icon
+            img
+                width: 100%
+                height: 100%
+                object-fit: contain
+    .wheather-temp
+        display: flex
+        span
+            text-transform: uppercase
+            font-weight: 600
+            &::after
+                content: ""
+                display: inline-block
+                width: 8px
+                height: 8px
+                margin: 0 0 15px 10px
+                border-radius: 50%
+        &::after
+            padding-top: 5px
+            content: 'C'
+            text-transform: uppercase
+            font-weight: 600
+    .weather-feels-like
+        position: relative
+        span
+            font-weight: 600
+            padding-left: 10px
+            &::after
+                content: ""
+                display: inline-block
+                width: 10px
+                height: 10px
+                border-radius: 50%
+                margin: 0 0 15px 10px
+        &::after
+            content: 'C'
+            font-weight: 600
+    .weather-loading
+        width: 100px
+        height: 100px
+        position: relative
+        img
+            width: 100%
+            height: 100%
+            object-fit: contain
+    .weather-favorite
+        width: 30px
+        height: 30px
+        flex: 0 0 30px
+        background: transparent
+        &::before   
+            transition: all .3s ease
+        &.favorite
+            &:before
+                color: #f30000
+
+._weather-info
+    @include flex-center
+    column-gap: 10px
+    span
+        &:first-child
+            column-gap: 10px
+        &:last-child
+            font-weight: 500
+
+._temp
+    display: flex
+    column-gap: 10px
+    span
+        &:last-child
+            &::after
+                content: ""
+                display: inline-block
+                width: 8px
+                height: 8px
+                margin: 0 0 7px 10px
+                border-radius: 50%
+        &:first-child
+            &::after
+                display: none
+    &::after
+        content: 'C'
+        margin-left: -7px
+        text-transform: uppercase
+        font-weight: 600
+
+
+@media( min-width: $tablet )   
+    .weatherPage
+        padding: 30px 0
+        .weatherPage-container
+            .weatherPage-link-back
+                font-size: 14px
+                &::before
+                    font-size: 12px
+            .weather-city-name
+                margin-top: 30px
+                font-size: 34px
+                margin-bottom: 20px
+            .weatherPage-links
+                @include flex-center
+                column-gap: 40px
+                .weatherPage-link
+                    font-size: 16px
+                    &::before
+                        content: ''
+                        display: block
+                        width: 1.5px
+                        height: 35px
+                        position: absolute
+                        top: 5px
+                        left: -20px
+                        opacity: 0.6
+            .weather-info
+                margin-top: 20px
+                .weatherPage-header
+                    .weather-status
+                        column-gap: 30px
+                        font-size: 22px
+                        .wheather-icon
+                            margin-bottom: 10px
+                            width: 60px
+                            height: 60px
+                .weatherPage-body
+                    @include flex-column
+                    row-gap: 20px
+    .weather-city
+        .weather-header
+            .weather-main
+                column-gap: 30px
+                .weather-city-name
+                    font-size: 22px
+                    min-width: 200px
+                    justify-content: start
+                    &::before
+                        font-size: 14px
+                .weather-status
+                    min-width: 100px
+                    font-size: 14px
+                    margin-right: 10px
+            .wheather-icon
+                width: 50px
+                height: 50px
+        .wheather-temp
+            span
+                font-size: 32px
+            &::after
+                font-size: 24px
+        .weather-feels-like
+            font-size: 16px
+            span
+                padding-left: 10px
+                font-size: 32px
+            &::after
+                font-size: 24px
+                color:#fff
+        .weather-favorite
+            width: 40px
+            height: 40px
+            font-size: 26px
+    ._weather-info
+        span
+            &:first-child
+                font-size: 16px
+                min-width: 220px
+            &:last-child
+                font-size: 20px
+    ._temp
+        display: flex
+        column-gap: 10px
+        span
+            font-size: 25px
+        &::after
+            font-size: 24px
+    .App.dark
+        .weather-favorite
+            &::before   
+                color: #0000005a
+            &.favorite
+                &:before
+                    color: #c30000
+            &:hover
+                &:before
+                    color: #c30000d4
+    .App.light
+        .weather-favorite
+            &::before   
+                color: #0000005a
+            &.favorite
+                &:before
+                    color: #e00303
+            &:hover
+                &:before
+                    color: #c30000a8
+
+@media( max-width: $tablet )
+    .weatherPage
+        padding: 30px 0
+        .weatherPage-container
+            .weatherPage-link-back
+                font-size: 16px
+                &::before
+                    margin-right: 5px
+                    font-size: 14px
+            .weather-city-name
+                margin-top: 30px
+                font-size: 36px
+                margin-bottom: 20px
+            .weatherPage-links
+                column-gap: 25px
+                .weatherPage-link
+                    font-size: 18px
+                    &::before
+                        content: ''
+                        display: block
+                        width: 1px
+                        height: 40px
+                        position: absolute
+                        top: 5px
+                        left: -10px
+                        opacity: 0.6
+            .weather-info
+                margin-top: 10px
+                .weatherPage-header
+                    .weather-status
+                        column-gap: 20px
+                        font-size: 24px
+                        .wheather-icon
+                            margin-bottom: 10px
+                            width: 70px
+                            height: 70px
+                .weatherPage-body
+                    @include flex-column
+                    row-gap: 20px
+    .weather-city
+        .weather-header
+            .weather-main
+                column-gap: 10px
+                .weather-city-name
+                    font-size: 24px
+                    min-width: 200px
+                    justify-content: start
+                    &::before
+                        font-size: 14px
+                .weather-status
+                    min-width: 100px
+                    font-size: 14px
+                    margin-right: 10px
+            .wheather-icon
+                width: 50px
+                height: 50px
+        .wheather-temp
+            span
+                font-size: 24px
+            &::after
+                font-size: 24px
+        .weather-feels-like
+            display: none
+        .weather-favorite
+            width: 40px
+            height: 40px
+            &::before 
+                font-size: 30px  
+                color: #0000005a
+    ._weather-info
+        @include flex-center
+        span
+            &:first-child
+                font-size: 20px
+                min-width: 270px
+            &:last-child
+                font-size: 26px
+    ._temp
+        display: flex
+        column-gap: 10px
+        span
+            font-size: 25px
+        &::after
+            font-size: 24px
+
+@media( max-width: $mobile)
+    .weatherPage
+        padding: 30px 0
+        .weatherPage-container
+            .weatherPage-link-back
+                font-size: 14px
+                &::before
+                    margin-right: 5px
+                    font-size: 12px
+            .weather-city-name
+                margin-top: 20px
+                font-size: 24px
+                margin-bottom: 10px
+            .weatherPage-links
+                column-gap: 8px
+                margin-bottom: 10px
+                .weatherPage-link
+                    font-size: 10px
+                    span
+                        font-size: 12px
+                    &::before
+                        display: none
+            .weather-info
+                margin-top: 0px
+                .weatherPage-header
+                    .weather-status
+                        column-gap: 20px
+                        font-size: 18px
+                        .wheather-icon
+                            margin-bottom: 10px
+                            width: 50px
+                            height: 50px
+                .weatherPage-body
+                    @include flex-column
+                    row-gap: 15px
+    .weather-city
+        .weather-header
+            .weather-main
+                column-gap: 10px
+                .weather-city-name
+                    font-size: 16px
+                    min-width: 100px
+                    justify-content: start
+                    &::before
+                        font-size: 14px
+                .weather-status
+                    display: none
+            .wheather-icon
+                width: 40px
+                height: 40px
+        .wheather-temp
+            span
+                font-size: 20px
+            &::after
+                font-size: 20px
+        .weather-feels-like
+            display: none
+        .weather-favorite
+            width: 30px
+            height: 30px
+            &::before 
+                font-size: 24px
+    ._weather-info
+        span
+            &:first-child
+                font-size: 14px
+                min-width: 200px
+            &:last-child
+                font-size: 18px
+    ._temp
+        span
+            font-size: 25px
+        &::after
+            font-size: 22px
+
+@media( min-width: $mobile)
+
+.App.dark
+    .weatherPage
+        color: $titleDark
+        .weatherPage-container
+            .weatherPage-link-back
+                color: $textDark
+            .weather-city-name
+                color: $titleDark
+            .weatherPage-links
+                .weatherPage-link
+                    color: $textDark
+                    &::before
+                        background: $textDark
+                    &::after
+                        background: $textDark
+                    &:hover
+                        color: $titleDark
+                .weatherPage-link.active
+                    color: $titleDark
+    .weatherPage-favorite
+        .weatherPage-favorite-container
+            .weatherPage-favorite-title
+                color: $titleDark
+    .weather-city
+        background: $otherDark
+        color: $titleDark
+        box-shadow: 0px 5px 10px  0 #000225
+        &:hover
+            box-shadow: 0px 5px 20px  0 #000000
+        .weather-header
+            .weather-main
+                .weather-city-name
+                    color: $titleDark
+                    &::after
+                        background: $titleDark
+                .weather-status
+                    color: $textDark
+        .wheather-temp
+            span
+                color: $titleDark
+                &::after
+                    border: 2px solid $titleDark
+            &::after
+                color:$textDark
+        .weather-feels-like
+            span
+                &::after
+                    border: 3px solid $textDark
+            &::after
+                color: $textDark
+    ._weather-info
+        color: $textDark
+        span
+            &:first-child
+                color: $textDark
+            &:last-child
+                color: $titleDark
+    ._temp
+        display: flex
+        column-gap: 10px
+        span
+            &:last-child
+                &::after
+                    border: 2px solid $titleDark
+        &::after
+            color: $titleDark
+
+.App.light
+    .weatherPage
+        color: $titleLight
+        .weatherPage-container
+            .weatherPage-link-back
+                color:$textLight
+            .weather-city-name
+                color: $titleLight
+            .weatherPage-links
+                .weatherPage-link
+                    color: $textLight
+                    &::before
+                        background: $textLight
+                    &::after
+                        background: $textLight
+                    &:hover
+                        color: $titleLight
+                .weatherPage-link.active
+                    color: $titleLight
+    .weatherPage-favorite
+        .weatherPage-favorite-container
+            .weatherPage-favorite-title
+                color: $titleLight
+    .weather-city
+        background: $otherLight
+        color: $titleLight
+        box-shadow: 0px 5px 10px  0 $textLight
+        &:hover
+            box-shadow: 0px 5px 20px  0 $titleLight
+        .weather-header
+            .weather-main
+                .weather-city-name
+                    color: $titleLight
+                    &::after
+                        background: $titleLight
+                .weather-status
+                    font-weight: 700
+                    color: $titleLight
+        .wheather-temp
+            span
+                color: $titleLight
+                &::after
+                    border: 2px solid $textLight
+            &::after
+                color: $textLight
+        .weather-feels-like
+            span
+                &::after
+                    border: 3px solid $textLight
+            &::after
+                color: $textLight
+    ._weather-info
+        color: $textLight
+        span
+            &:first-child
+                color: $textLight
+            &:last-child
+                font-weight: 700
+                color: $titleLight
+    ._temp
+        span
+            &:last-child
+                &::after
+                    border: 2px solid $textLight
+        &::after
+            color: $textLight

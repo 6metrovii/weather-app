@@ -1,0 +1,141 @@
+@import "../../sass/settings/_mixins"
+@import "../../sass/settings/_vars"
+
+
+.PageNotFound
+    .PageNotFound-container
+        @include flex-column-center
+        .PageNotFound-title
+            font-weight: 500
+        .PageNotFound-icon
+            &:before
+        .PageNotFound-nav
+            .PageNotFound-nav-title
+                font-weight: 700
+            .PageNotFound-nav-list
+                @include flex-column-center
+                row-gap: 20px
+                .PageNotFound-nav-list-item
+                    a
+                        padding: 3px 0
+                        font-weight: 500
+                        text-decoration: underline
+
+.App.dark
+    .PageNotFound
+    .PageNotFound-container
+        .PageNotFound-title
+            color: $titleDark
+        .PageNotFound-icon
+            color: $textDark
+        .PageNotFound-nav
+            .PageNotFound-nav-title
+                color: $titleDark
+            .PageNotFound-nav-list
+                .PageNotFound-nav-list-item
+                    a
+                        color: $textDark
+
+.App.light
+    .PageNotFound
+    .PageNotFound-container
+        .PageNotFound-title
+            color: $titleLight
+        .PageNotFound-icon
+            color: $textLight
+        .PageNotFound-nav
+            .PageNotFound-nav-title
+                color: $titleLight
+            .PageNotFound-nav-list
+                .PageNotFound-nav-list-item
+                    a
+                        color: $textLight
+
+@media( min-width: $tablet )  
+    .PageNotFound
+        padding-top: 50px
+        .PageNotFound-container
+            .PageNotFound-title
+                font-size: 32px
+                margin-bottom: 20px
+            .PageNotFound-icon
+                width: 200px
+                height: 200px
+                margin-bottom: 20px
+                &:before
+                    font-size: 200px
+            .PageNotFound-nav
+                .PageNotFound-nav-title
+                    font-size: 20px
+                    margin-bottom: 20px
+                .PageNotFound-nav-list
+                    .PageNotFound-nav-list-item
+                        a  
+                            font-size: 16px
+                            transition: all .2s ease
+    .App.dark
+        .PageNotFound
+            .PageNotFound-container
+                .PageNotFound-nav
+                    .PageNotFound-nav-list
+                        .PageNotFound-nav-list-item
+                            a  
+                                &:hover
+                                    color: $titleDark
+    .App.light
+        .PageNotFound
+            .PageNotFound-container
+                .PageNotFound-nav
+                    .PageNotFound-nav-list
+                        .PageNotFound-nav-list-item
+                            a  
+                                &:hover
+                                    color: $titleLight
+
+@media( max-width: $tablet )
+    .PageNotFound
+        padding-top: 50px
+        .PageNotFound-container
+            .PageNotFound-title
+                font-size: 34px
+                margin-bottom: 20px
+            .PageNotFound-icon
+                width: 250px
+                height: 250px
+                margin-bottom: 20px
+                &:before
+                    font-size: 250px
+            .PageNotFound-nav
+                .PageNotFound-nav-title
+                    font-size: 22px
+                    margin-bottom: 20px
+                .PageNotFound-nav-list
+                    .PageNotFound-nav-list-item
+                        a  
+                            font-size: 18px
+                            transition: all .2s ease
+
+@media( min-width: $mobile)
+    
+@media( max-width: $mobile)
+    .PageNotFound
+        padding-top: 30px
+        .PageNotFound-container
+            .PageNotFound-title
+                font-size: 22px
+                margin-bottom: 10px
+            .PageNotFound-icon
+                width: 200px
+                height: 200px
+                margin-bottom: 20px
+                &:before
+                    font-size: 200px
+            .PageNotFound-nav
+                .PageNotFound-nav-title
+                    font-size: 18px
+                    margin-bottom: 20px
+                .PageNotFound-nav-list
+                    .PageNotFound-nav-list-item
+                        a  
+                            font-size: 16px
+                            transition: all .2s ease
