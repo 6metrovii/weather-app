@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
 import weaterCitys from './data/weatherCitys';
 import Weathers from './components/weather/Weathers';
 import MainLayout from './layouts/MainLayout';
@@ -9,10 +8,10 @@ import WeatherPageToday from './components/weather/WeatherPageToday';
 import WeatherPageLayout from './layouts/WeatherPageLayout';
 import Header from './components/header/Header';
 import WeatherPageFavorite from './components/weather/WeatherPageFavorite';
-import './App.sass';
 import WeatherPageMyCity from './components/weather/WeatherPageMyCIiy';
 import EmplyPage from './components/weather/EmplyPage';
 import NotFound from './components/NotFound/NotFound';
+import './App.sass';
 
 const App = () => {
     const [myCity, setMyCity] = useState(
@@ -69,13 +68,8 @@ const App = () => {
         });
 
     useEffect(() => {
-        function setThemeClass() {
-            saveUserTheme
-                ? setAppClasses(saveUserTheme)
-                : setAppClasses(userTheme);
-        }
-        setThemeClass();
-    }, []);
+        saveUserTheme ? setAppClasses(saveUserTheme) : setAppClasses(userTheme);
+    }, [saveUserTheme, userTheme]);
 
     function changeTheme(saveTheme = false) {
         let newTheme;
