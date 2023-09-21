@@ -78,11 +78,23 @@
                     opacity: 0.7
                     text-align: left
                     font-size: 14px
-                    background: transparent !important
-                    border: none !important
+                    background: transparent 
+                    border: none 
                     transition: all .3s ease
                     &:hover
                         opacity: 1
+        .section-weather-form-search-memory
+            position: absolute
+            left: 0
+            width: 100%
+            @include flex-center-center
+            column-gap: 5px
+            .section-weather-form-search-memory-button
+                padding: 5px 0
+                border: 0px solid
+                text-decoration: underline
+                background: transparent
+                transition: all .2s ease
 
 
 
@@ -318,6 +330,9 @@
             width: 100%
             input 
                 flex: 1 1 auto
+    .section-weather-form-search-memory
+            top: 180%
+        
 
 @media( min-width: $mobile)
     ._container
@@ -330,6 +345,8 @@
         .section-weather-form
             @include flex-center
             column-gap: 10px
+    .section-weather-form-search-memory
+            top: 110%
 
 .App.dark
     background: $mainDark
@@ -343,7 +360,7 @@
                 option
                     color: $titleDark
         .section-weather-form
-            input,button
+            .section-weather-form-input,.section-weather-form-button
                 border-radius: 5px 
                 border: 2px solid $titleDark
                 color: $titleDark
@@ -379,6 +396,8 @@
                 color: $textDark
     .section-weather-form-results
         background: $otherDark
+        .section-weather-form-results-button
+            color: $textDark
     .section-weather-form-input
         &:focus-visible
             box-shadow: 0 0 5px 0 $textDark
@@ -387,6 +406,10 @@
             transition: all .2s ease
             background: $titleDark !important
             color: $mainDark !important
+    .section-weather-form-search-memory-button
+        color: $textDark
+        &:hover
+            color: $titleDark
 
 
 .App.light
@@ -401,7 +424,7 @@
                 option
                     color: $titleLight
         .section-weather-form
-            input,button
+            .section-weather-form-input,.section-weather-form-button
                 font-weight: 500
                 border-radius: 5px 
                 border: 2px solid $textLight
@@ -444,7 +467,13 @@
             box-shadow: 0 0 5px 0 $textLight
     .section-weather-form-results
         background: $otherLight
+        .section-weather-form-results-button
+            color: $titleLight
     .section-weather-form-button
         &:hover
             background: $titleLight !important
             color: $mainLight !important
+    .section-weather-form-search-memory-button
+        color: $textLight
+        &:hover
+            color: $titleLight

@@ -15,6 +15,8 @@ const WeatherPageDetails = () => {
         }
     }, [data, navigate]);
 
+    console.log(data);
+
     return (
         <>
             {!data ? (

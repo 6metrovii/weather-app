@@ -1,52 +1,90 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import WeatherPageLayout from '../../layouts/WeatherPageLayout';
-//import weaterCitys from '../../data/weatherCitys';
+import weaterCitys from '../../data/weatherCitys';
 
 const WeatherPageMyCity = ({ city, citys, setMyCity, day, month }) => {
     const [inputValue, setInputValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const navigate = useNavigate();
-
     const citysName = citys.map((item) => item.city);
+
+    let resultSearchArray = localStorage.getItem('searchResult')
+        ? JSON.parse(localStorage.getItem('searchResult'))
+        : [];
+
+    function unique(arr) {
+        let result = [];
+        for (let str of arr) {
+            if (!result.includes(str)) {
+                result.push(str);
+            }
+        }
+        return result;
+    }
 
     function changeSearchForm(e) {
         e.preventDefault();
-        const newCity = citysName.filter((item) => item === inputValue);
-        if (newCity.length > 0) {
-            setMyCity(inputValue);
-            localStorage.setItem('myCity', JSON.stringify(inputValue));
-            navigate(`../${inputValue}/${day}.${month}`, { relative: 'route' });
-            setInputValue('');
-        } else setInputValue('');
+        if (inputValue) {
+            const newMyCity = inputValue[0].toUpperCase() + inputValue.slice(1);
+            const newCity = citysName.filter((item) => item === newMyCity);
+            if (newCity[0]) resultSearchArray.unshift(newCity[0]);
+
+            resultSearchArray = unique(resultSearchArray);
+            localStorage.setItem(
+                'searchResult',
+                JSON.stringify(resultSearchArray)
+            );
+            if (newCity.length > 0) {
+                setMyCity(newMyCity);
+                localStorage.setItem('myCity', JSON.stringify(newMyCity));
+                navigate(`../${inputValue}/${day}.${month}`, {
+                    relative: 'route',
+                });
+                setInputValue('');
+            } else setInputValue('');
+        }
     }
+
     function changeSearchInput(text) {
         setInputValue(text);
         setSearchResult(searchProjects(citysName, text));
     }
 
+    function searchProjects(projects, key) {
+        key = key[0].toUpperCase() + key.slice(1);
+        const searchProjects = [...projects];
+        if (!key) return searchProjects;
+        const newArray = searchProjects.map(
+            (item) => item[0].toUpperCase() + item.slice(1)
+        );
+        return newArray.filter((item) => item.indexOf(key) > -1);
+    }
+
     function SelectMyCity(text) {
+        text = text[0].toUpperCase() + text.slice(1);
+        setMyCity(text);
+        localStorage.setItem('myCity', JSON.stringify(text));
+        resultSearchArray.unshift(text);
+        resultSearchArray = unique(resultSearchArray);
+        localStorage.setItem('searchResult', JSON.stringify(resultSearchArray));
+        navigate(`../${text}/${day}.${month}`, { relative: 'route' });
+        setInputValue('');
+    }
+
+    function selectMyCity(text) {
         setMyCity(text);
         localStorage.setItem('myCity', JSON.stringify(text));
         navigate(`../${text}/${day}.${month}`, { relative: 'route' });
         setInputValue('');
     }
-
-    function searchProjects(projects, key) {
-        //key = key.toLowerCase();
-        const searchProjects = [...projects];
-        if (!key) return searchProjects;
-        //const newArray = searchProjects.map((item) => item.toLowerCase());
-        return searchProjects.filter((item) => item.indexOf(key) > -1);
-    }
-
     return (
         <div className="MycityPage">
             <div className="MycityPage-container _container">
                 <div className="MycityPage-title">
                     Ваше місто: <span>{city}</span>
                 </div>
-                {/* <div className="MycityPage-select-block">
+                <div className="MycityPage-select-block">
                     {weaterCitys.length > 0 && (
                         <select
                             onChange={(e) => SelectMyCity(e.target.value)}
@@ -60,7 +98,7 @@ const WeatherPageMyCity = ({ city, citys, setMyCity, day, month }) => {
                             ))}
                         </select>
                     )}
-                </div> */}
+                </div>
                 <div className="section-weather-form">
                     <h3 className="section-weather-form-title">
                         Знайти своє місто:
@@ -105,6 +143,20 @@ const WeatherPageMyCity = ({ city, citys, setMyCity, day, month }) => {
                             )}
                         </div>
                     </form>
+                    <div className="section-weather-form-search-memory">
+                        {resultSearchArray.length > 0 &&
+                            resultSearchArray.map((item, index) =>
+                                index < 4 ? (
+                                    <button
+                                        className="section-weather-form-search-memory-button"
+                                        onClick={() => selectMyCity(item)}
+                                        key={index}
+                                    >
+                                        {item}
+                                    </button>
+                                ) : null
+                            )}
+                    </div>
                 </div>
             </div>
             {

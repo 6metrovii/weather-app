@@ -11,8 +11,6 @@ const WeatherPageLayout = ({ city, citys, day, month }) => {
         ? citys.find((item) => item.city === slug)
         : citys.find((item) => item.city === city);
 
-    // const favorites = citys.filter((item) => item.isFavorite === true);
-
     useEffect(() => {
         loadWeather(cityPage.lat, cityPage.lng, setWeatherData);
     }, [cityPage, setWeatherData]);
@@ -26,9 +24,6 @@ const WeatherPageLayout = ({ city, citys, day, month }) => {
                         to="../.."
                         relative="path"
                     >
-                        {/* {favorites.length > 0
-                            ? 'Погода в інших обраних містах'
-                            : 'Погода в інших містах України'} */}
                         Погода в інших містах України
                     </NavLink>
                 ) : null}

@@ -45,6 +45,22 @@ const WeatherPageToday = ({ city }) => {
         return hour;
     }
 
+    /*  const date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    //const day = date.getDay();
+    month = month < 10 ? ('0' + month).slice(-2) : month;
+
+    const sunriseData = data?.sunrise;
+    const sunsetData = data?.sunset;
+
+    const startMonth = Date.parse(`${year}-${month}-01T00:01:01`);
+
+    const sunrise = new Date(startMonth + sunriseData);
+    const sunset = new Date(startMonth + sunsetData);
+
+    console.log(sunrise, sunset); */
+
     return (
         <>
             {!data ? (
@@ -101,7 +117,6 @@ const WeatherPageToday = ({ city }) => {
                                 <span>{` ${data.wind_gust} км/год`}</span>
                             </div>
                         </div>
-
                         <div className="weatherPage-weather-hours">
                             <h2 className="weatherPage-weather-hours-title">
                                 Погодинний прогноз на сьогодні
