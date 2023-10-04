@@ -52,7 +52,7 @@ const WeatherPageMyCity = ({ city, citys, setMyCity, day, month }) => {
     }
 
     function searchProjects(projects, key) {
-        key = key[0].toUpperCase() + key.slice(1);
+        if (key.length > 0) key = key[0].toUpperCase() + key.slice(1);
         const searchProjects = [...projects];
         if (!key) return searchProjects;
         const newArray = searchProjects.map(
@@ -129,6 +129,7 @@ const WeatherPageMyCity = ({ city, citys, setMyCity, day, month }) => {
                             {searchResult.length > 0 ? (
                                 searchResult.map((item, index) => (
                                     <button
+                                        title={`Погода у місті ${item}`}
                                         onClick={() => SelectMyCity(item)}
                                         className="section-weather-form-results-button"
                                         key={index}
@@ -148,6 +149,7 @@ const WeatherPageMyCity = ({ city, citys, setMyCity, day, month }) => {
                             resultSearchArray.map((item, index) =>
                                 index < 4 ? (
                                     <button
+                                        title={`Погода у місті ${item}`}
                                         className="section-weather-form-search-memory-button"
                                         onClick={() => selectMyCity(item)}
                                         key={index}

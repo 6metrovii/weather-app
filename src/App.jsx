@@ -30,7 +30,7 @@ const App = () => {
     const date = new Date();
     let day = date.getDate();
     let month = date.getMonth() + 1;
-    day = day < 10 ? ('0' + day).slice(-2) : day;
+    day = Number(day < 10 ? ('0' + day).slice(-2) : day);
     month = month < 10 ? ('0' + month).slice(-2) : month;
 
     useEffect(() => {
@@ -140,10 +140,23 @@ const App = () => {
                             />
                         }
                     >
-                        <Route index={true} element={<WeatherPageToday />} />
+                        <Route
+                            index={true}
+                            element={
+                                <WeatherPageToday
+                                    myCity={myCity}
+                                    appClasses={appClasses}
+                                />
+                            }
+                        />
                         <Route
                             path={`${day}.${month}`}
-                            element={<WeatherPageToday />}
+                            element={
+                                <WeatherPageToday
+                                    myCity={myCity}
+                                    appClasses={appClasses}
+                                />
+                            }
                         />
                         <Route
                             path={`${day + 1}.${month}`}
@@ -184,10 +197,23 @@ const App = () => {
                             />
                         }
                     >
-                        <Route index={true} element={<WeatherPageToday />} />
+                        <Route
+                            index={true}
+                            element={
+                                <WeatherPageToday
+                                    myCity={myCity}
+                                    appClasses={appClasses}
+                                />
+                            }
+                        />
                         <Route
                             path={`${day}.${month}`}
-                            element={<WeatherPageToday />}
+                            element={
+                                <WeatherPageToday
+                                    myCity={myCity}
+                                    appClasses={appClasses}
+                                />
+                            }
                         />
                         <Route
                             path={`${day + 1}.${month}`}
@@ -232,11 +258,23 @@ const App = () => {
                     >
                         <Route
                             index={true}
-                            element={<WeatherPageToday city={myCity} />}
+                            element={
+                                <WeatherPageToday
+                                    myCity={myCity}
+                                    appClasses={appClasses}
+                                    city={myCity}
+                                />
+                            }
                         />
                         <Route
                             path={`${day}.${month}`}
-                            element={<WeatherPageToday city={myCity} />}
+                            element={
+                                <WeatherPageToday
+                                    myCity={myCity}
+                                    appClasses={appClasses}
+                                    city={myCity}
+                                />
+                            }
                         />
                         <Route
                             path={`${day + 1}.${month}`}

@@ -44,7 +44,7 @@ const WeatherPageMenu = ({ weatherData, day, month }) => {
                 >
                     завтра
                     <span>
-                        {day + 1}.{month}
+                        {Number(day + 1)}.{month}
                     </span>
                 </NavLink>
                 <NavLink

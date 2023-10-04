@@ -120,6 +120,9 @@
                         height: 30px
                     .section-weather-form-input
                         padding: 0 10px
+                        &::focus
+                            &::placeholder
+                                color: red
                     .section-weather-form-button
                         padding: 0 20px
                 .header-filter
@@ -399,8 +402,8 @@
         .section-weather-form-results-button
             color: $textDark
     .section-weather-form-input
-        &:focus-visible
-            box-shadow: 0 0 5px 0 $textDark
+        &:focus
+            box-shadow: 0 0 4px 0 $textDark
     .section-weather-form-button
         &:hover
             transition: all .2s ease
@@ -463,7 +466,7 @@
             &::before
                 color: $titleLight
     .section-weather-form-input
-        &:focus-visible
+        &:focus
             box-shadow: 0 0 5px 0 $textLight
     .section-weather-form-results
         background: $otherLight

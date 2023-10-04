@@ -1,6 +1,9 @@
 @import "../../sass/settings/_mixins"
 @import "../../sass/settings/_vars"
 
+.oher
+    color: #ffdfdf
+
 .weatherPage
     .weatherPage-container
         .weatherPage-link-back
@@ -58,7 +61,20 @@
                             height: 100%
                             object-fit: contain
             .weatherPage-body
-                @include flex-column
+                .weatherPage-body-items
+                    @include flex-column
+                    margin-bottom: 20px
+                .weatherPage-body-scale
+                    width: 100%
+                    height: 400px
+                    margin-bottom: 40px
+                    .weatherPage-body-scale-title
+                        font-weight: 500
+                        font-size: 20px
+                        margin-bottom: 10px
+                    canvas
+                        margin-bottom: 20px
+
 
 .weatherPage-favorite
     padding-top: 50px
@@ -266,8 +282,8 @@
                             width: 60px
                             height: 60px
                 .weatherPage-body
-                    @include flex-column
-                    row-gap: 20px
+                    .weatherPage-body-items
+                        row-gap: 20px
     .weather-city
         .weather-header
             .weather-main
@@ -413,8 +429,8 @@
                             width: 70px
                             height: 70px
                 .weatherPage-body
-                    @include flex-column
-                    row-gap: 20px
+                    .weatherPage-body-items
+                        row-gap: 20px
     .weather-city
         .weather-header
             .weather-main
@@ -525,8 +541,8 @@
                             width: 50px
                             height: 50px
                 .weatherPage-body
-                    @include flex-column
-                    row-gap: 15px
+                    .weatherPage-body-items
+                        row-gap: 15px
     .weather-city
         .weather-header
             .weather-main
@@ -680,6 +696,11 @@
                 .weatherPage-weather-hour-title
                     &::before
                         background: $textDark
+    .weatherPage-body
+        .weatherPage-body-scale
+            .weatherPage-body-scale-title
+            canvas
+                background: $otherDark
 
 .App.light
     .weatherPage
@@ -757,3 +778,8 @@
                 .weatherPage-weather-hour-title
                     &::before
                         background: $textLight
+    .weatherPage-body
+        .weatherPage-body-scale
+            .weatherPage-body-scale-title
+            canvas
+                background: $titleLight

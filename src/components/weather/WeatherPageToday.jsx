@@ -2,8 +2,9 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import weaterCitys from '../../data/weatherCitys';
 import loadWeather from '../../services/loadWeather';
+import ScaleTemp from './ScaleTemp';
 
-const WeatherPageToday = ({ city }) => {
+const WeatherPageToday = ({ myCity, city, appClasses }) => {
     const { slug } = useParams();
     const [weatherData, setWeatherData] = useState(null);
 
@@ -27,6 +28,16 @@ const WeatherPageToday = ({ city }) => {
     hourNow = hourNow < 10 ? ('0' + hourNow).slice(-2) : hourNow;
     minutesNow = minutesNow < 10 ? ('0' + minutesNow).slice(-2) : minutesNow;
 
+    const hourlyWeather = weatherData?.hourly;
+    const hourlyHumidity = [];
+    const hourlyTemps = [];
+    hourlyWeather?.forEach((item) => {
+        hourlyTemps.push(item.temp);
+        hourlyHumidity.push(item.humidity);
+    });
+    const angle = '°C';
+    const percent = '%';
+
     function formatHours(hour) {
         if (hour === 24) hour = 0;
         if (hour === 25) hour = 1;
@@ -41,25 +52,52 @@ const WeatherPageToday = ({ city }) => {
         if (hour === 34) hour = 10;
         if (hour === 35) hour = 11;
         if (hour === 36) hour = 12;
+        if (hour === 37) hour = 13;
+        if (hour === 38) hour = 14;
+        if (hour === 39) hour = 15;
+        if (hour === 40) hour = 16;
+        if (hour === 41) hour = 17;
+        if (hour === 42) hour = 18;
+        if (hour === 43) hour = 19;
+        if (hour === 44) hour = 20;
+        if (hour === 45) hour = 21;
+        if (hour === 46) hour = 22;
+        if (hour === 47) hour = 23;
+        if (hour === 48) hour = 0;
+        if (hour === 49) hour = 1;
+        if (hour === 50) hour = 2;
+        if (hour === 51) hour = 3;
+        if (hour === 52) hour = 4;
+        if (hour === 53) hour = 5;
+        if (hour === 54) hour = 6;
+        if (hour === 55) hour = 7;
+        if (hour === 56) hour = 8;
+        if (hour === 57) hour = 9;
+        if (hour === 58) hour = 10;
+        if (hour === 59) hour = 11;
+        if (hour === 60) hour = 12;
+        if (hour === 61) hour = 13;
+        if (hour === 62) hour = 14;
+        if (hour === 63) hour = 15;
+        if (hour === 64) hour = 16;
+        if (hour === 65) hour = 17;
+        if (hour === 66) hour = 18;
+        if (hour === 67) hour = 19;
+        if (hour === 68) hour = 20;
+        if (hour === 69) hour = 21;
+        if (hour === 70) hour = 22;
+        if (hour === 71) hour = 23;
+        if (hour === 72) hour = 0;
+        if (hour === 73) hour = 1;
+        if (hour === 74) hour = 2;
+        if (hour === 75) hour = 3;
+        if (hour === 76) hour = 4;
+        if (hour === 77) hour = 5;
+        if (hour === 78) hour = 6;
+        if (hour === 79) hour = 7;
         hour = hour < 10 ? ('0' + hour).slice(-2) : hour;
         return hour;
     }
-
-    /*  const date = new Date();
-    let year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    //const day = date.getDay();
-    month = month < 10 ? ('0' + month).slice(-2) : month;
-
-    const sunriseData = data?.sunrise;
-    const sunsetData = data?.sunset;
-
-    const startMonth = Date.parse(`${year}-${month}-01T00:01:01`);
-
-    const sunrise = new Date(startMonth + sunriseData);
-    const sunset = new Date(startMonth + sunsetData);
-
-    console.log(sunrise, sunset); */
 
     return (
         <>
@@ -82,44 +120,76 @@ const WeatherPageToday = ({ city }) => {
                             </div>
                         </div>
                         <div className="weatherPage-body">
-                            <div className="weatherPage-temp-now _weather-info _temp ">
-                                <div className="_weather-info-icon icon-temp"></div>
-                                <span>Температура зараз:</span>
-                                <span>{Math.round(data.temp)}</span>
+                            <div className="weatherPage-body-items">
+                                <div className="weatherPage-temp-now _weather-info _temp ">
+                                    <div className="_weather-info-icon icon-temp"></div>
+                                    <span>Температура зараз:</span>
+                                    <span>{Math.round(data.temp)}</span>
+                                </div>
+                                <div className="weatherPage-temp-like _weather-info _temp ">
+                                    <div className="_weather-info-icon icon-temp"></div>
+                                    <span>Відчувається як:</span>
+                                    <span>{Math.round(data.feels_like)}</span>
+                                </div>
+                                <div className="weatherPage-humidity _weather-info ">
+                                    <div className="_weather-info-icon icon-humidity"></div>
+                                    <span>Вологість:</span>
+                                    <span>{` ${Math.round(
+                                        data.humidity
+                                    )} % `}</span>
+                                </div>
+                                <div className="weatherPage-pressure _weather-info ">
+                                    <div className="_weather-info-icon icon-pressure"></div>
+                                    <span>Тиск:</span>
+                                    <span>{` ${Math.round(
+                                        data.pressure
+                                    )} мм `}</span>
+                                </div>
+                                <div className="weatherPage-wind _weather-info ">
+                                    <div className="_weather-info-icon icon-wind"></div>
+                                    <span>Вітер:</span>
+                                    <span>{` ${data.wind_speed} км/год`}</span>
+                                </div>
+                                <div className="weatherPage-wind _weather-info  ">
+                                    <div className="_weather-info-icon icon-wind2"></div>
+                                    <span>Порив вітру:</span>
+                                    <span>{` ${data.wind_gust} км/год`}</span>
+                                </div>
                             </div>
-                            <div className="weatherPage-temp-like _weather-info _temp ">
-                                <div className="_weather-info-icon icon-temp"></div>
-                                <span>Відчувається як:</span>
-                                <span>{Math.round(data.feels_like)}</span>
+                            <div className="weatherPage-body-scale">
+                                <h2 className="weatherPage-body-scale-title">
+                                    Графік зміни температури на наступні 48
+                                    годин
+                                </h2>
+                                <ScaleTemp
+                                    myCity={myCity}
+                                    appClasses={appClasses}
+                                    formatHours={formatHours}
+                                    minutesNow={minutesNow}
+                                    hourNow={hourNow}
+                                    hourlyInfo={hourlyTemps}
+                                    sign={angle}
+                                />
                             </div>
-                            <div className="weatherPage-humidity _weather-info ">
-                                <div className="_weather-info-icon icon-humidity"></div>
-                                <span>Вологість:</span>
-                                <span>{` ${Math.round(
-                                    data.humidity
-                                )} % `}</span>
-                            </div>
-                            <div className="weatherPage-pressure _weather-info ">
-                                <div className="_weather-info-icon icon-pressure"></div>
-                                <span>Тиск:</span>
-                                <span>{` ${Math.round(
-                                    data.pressure
-                                )} мм `}</span>
-                            </div>
-                            <div className="weatherPage-wind _weather-info ">
-                                <div className="_weather-info-icon icon-wind"></div>
-                                <span>Вітер:</span>
-                                <span>{` ${data.wind_speed} км/год`}</span>
-                            </div>
-                            <div className="weatherPage-wind _weather-info  ">
-                                <div className="_weather-info-icon icon-wind2"></div>
-                                <span>Порив вітру:</span>
-                                <span>{` ${data.wind_gust} км/год`}</span>
+                            <div className="weatherPage-body-scale">
+                                <h2 className="weatherPage-body-scale-title">
+                                    Графік зміни вологості повітря на наступні
+                                    48 годин
+                                </h2>
+                                <ScaleTemp
+                                    myCity={myCity}
+                                    appClasses={appClasses}
+                                    formatHours={formatHours}
+                                    minutesNow={minutesNow}
+                                    hourNow={hourNow}
+                                    hourlyInfo={hourlyHumidity}
+                                    sign={percent}
+                                />
                             </div>
                         </div>
                         <div className="weatherPage-weather-hours">
                             <h2 className="weatherPage-weather-hours-title">
-                                Погодинний прогноз на сьогодні
+                                Детальний погодинний прогноз погоди на сьогодні
                             </h2>
                             <div className="weatherPage-weather-hour-wrapper">
                                 <div className="weatherPage-weather-hour">
